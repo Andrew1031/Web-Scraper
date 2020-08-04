@@ -9,7 +9,6 @@ var http = require('http');
 
 app.get("/", function(req, res){
 
-console.log("A");
 url = 'https://na.op.gg/summoner/userName=diamondyasu0main';
 
 
