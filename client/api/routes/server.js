@@ -3,14 +3,14 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 const { Console } = require('console');
+const { equal } = require('assert');
 var app = express();
 //const url = require('url');
-var http = require('http');
+//var http = require('http');
 
-app.get("/", function(req, res){
+app.get("/", function(req, res, next){
 
 url = 'https://na.op.gg/summoner/userName=diamondyasu0main';
-
 
 request(url, function(error, response, html){
     if(!error){

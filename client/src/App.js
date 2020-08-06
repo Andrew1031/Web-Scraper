@@ -5,7 +5,7 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "", value: ""};
+    this.state = { apiResponse: "", value: "123"};
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -15,17 +15,30 @@ class App extends Component {
         .then(res => this.setState({ apiResponse: res, value: this.state.value}));
   }
 
-
   componentWillMount() {
       this.callAPI();
   }
 
   onSubmit(event) {
-    event.preventDefault();
-    alert("Value was entered: " + this.state.value);
+    alert("Value was entered: " + this.state.value); 
     
+    fetch("http://localhost:9000/server", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        value: this.state.value
+      })
+      
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
   }
-
+  
+  
   myChangeHandler = (event) => {
     this.setState({value: event.target.value});
   }
@@ -49,6 +62,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
