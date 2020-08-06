@@ -8,9 +8,25 @@ var app = express();
 //const url = require('url');
 //var http = require('http');
 
-app.get("/", function(req, res, next){
 
-url = 'https://na.op.gg/summoner/userName=diamondyasu0main';
+
+app.get("/helloworld/:id3/:id1/:id2", function(req, res, next){
+  res.send("helloworld 1 2 3");
+})
+
+app.get("/helloworld1", function(req, res, next){
+  res.send("helloworld 1");
+})
+
+app.get("/helloworld", function(req, res, next){
+  res.send("helloworld 2");
+})
+
+
+app.get("/:id", function(req, res, next){
+
+url = 'https://na.op.gg/summoner/userName=';
+url = url + req.params.id;
 
 request(url, function(error, response, html){
     if(!error){
